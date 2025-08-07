@@ -14,11 +14,16 @@
   "devDependencies": {
     "@types/react": "^19.0.0",
     "@types/react-dom": "^19.0.0",
-    "typescript": "^5.0.0",
-    "tsup": "^7.0.0"
+    "tsup": "^8.5.0",
+    "typescript": "^5.0.0"
   },
   "scripts": {
-    "build": "tsup src/index.ts --dts --format esm,cjs --watch",
-    "clean": "rm -rf dist"
+    "build": "tsup",
+    "dev": "tsup --watch",
+    "clean": "rm -rf dist",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build"
+  },
+  "dependencies": {
   }
 }
