@@ -1,10 +1,11 @@
 {
-  "name": "BizElements",
+  "name": "bizelements",
   "private": true,
   "scripts": {
     "build": "turbo run build",
     "dev": "turbo run dev",
     "lint": "turbo run lint",
+    "storybook": "cd packages/ui && storybook dev -p 6006",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
     "check-types": "turbo run check-types"
   },

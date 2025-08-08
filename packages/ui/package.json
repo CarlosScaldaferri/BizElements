@@ -7,18 +7,42 @@
   "files": [
     "dist"
   ],
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.js"
+    },
+    "./styles.css": "./dist/styles.css"
+  },
   "peerDependencies": {
     "react": "^19.1.1",
     "react-dom": "^19.1.1"
   },
   "devDependencies": {
+    "@storybook/addon-docs": "^9.1.1",
+    "@storybook/addon-onboarding": "^9.1.1",
+    "@storybook/react-vite": "^9.1.1",
     "@types/react": "^19.0.0",
     "@types/react-dom": "^19.0.0",
-    "typescript": "^5.0.0",
-    "tsup": "^7.0.0"
+    "concurrently": "^9.2.0",
+    "storybook": "^9.1.1",
+    "tsup": "^8.5.0",
+    "typescript": "^5.0.0"
   },
   "scripts": {
-    "build": "tsup src/index.ts --dts --format esm,cjs --watch",
-    "clean": "rm -rf dist"
+    "build:ts": "tsup",
+    "build:css": "tailwindcss -i ./src/styles.css -o ./dist/styles.css",
+    "build": "npm run build:ts && npm run build:css",
+    "watch:ts": "tsup --watch",
+    "watch:css": "tailwindcss -i ./src/styles.css -o ./dist/styles.css --watch",
+    "dev": "concurrently \"npm:watch:ts\" \"npm:watch:css\"",
+    "clean": "rm -rf dist",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build"
+  },
+  "dependencies": {
+    "@tailwindcss/cli": "^4.1.11",
+    "tailwindcss": "^4.1.11"
   }
 }
