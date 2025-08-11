@@ -22,7 +22,7 @@ const BizForm: React.FC<BizFormProps> = ({ onSave, onCancel, children }) => {
       <div className="flex gap-3 pt-4 border-t border-gray-200">
         <button
           type="submit"
-          className="flex-1 bg-yellow-500 hover:bg-yellow-600 text-white font-medium py-2 px-4 rounded-md transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:ring-offset-2"
+          className="flex-1 bg-red-500 hover:bg-yellow-600 text-white font-medium py-2 px-4 rounded-md transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:ring-offset-2"
         >
           Salvar
         </button>
