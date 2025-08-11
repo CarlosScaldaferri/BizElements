@@ -16,7 +16,7 @@ const BizForm: React.FC<BizFormProps> = ({ onSave, onCancel, children }) => {
   return (
     <form
       onSubmit={handleSubmit}
-      className="bg-white p-6 rounded-lg shadow-md max-w-md mx-auto space-y-4"
+      className="p-6 bg-destructive rounded-lg shadow-md max-w-md mx-auto space-y-4"
     >
       <div className="space-y-4">{children}</div>
       <div className="flex gap-3 pt-4 border-t border-gray-200">
