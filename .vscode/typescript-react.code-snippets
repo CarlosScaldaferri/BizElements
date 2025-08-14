@@ -16,9 +16,9 @@
       "    </div>",
       "  );",
       "};",
-      ""
+      "",
     ],
-    "description": "Create a React functional component with TypeScript using React 19 standards"
+    "description": "Create a React functional component with TypeScript using React 19 standards",
   },
   "Storybook Stories File": {
     "prefix": "story",
@@ -76,9 +76,9 @@
       "    },",
       "  },",
       "};",
-      ""
+      "",
     ],
-    "description": "Create a Storybook stories file with TypeScript and multiple story variants"
+    "description": "Create a Storybook stories file with TypeScript and multiple story variants",
   },
   "Vitest Test File": {
     "prefix": "test",
@@ -98,8 +98,22 @@
       "    expect(true).toBe(true);",
       "  });",
       "});",
-      ""
+      "",
     ],
-    "description": "Create a Vitest test file with TypeScript"
-  }
+    "description": "Create a Vitest test file with TypeScript",
+  },
+  "Next.js Page Component": {
+    "prefix": "nextpage",
+    "body": [
+      "export default function ${1:ExamplePage}() {",
+      "  return (",
+      "    <main>",
+      "      <h1>${2:Example Page}</h1>",
+      "      <p>${3:Bem-vindo à página de exemplo!}</p>",
+      "    </main>",
+      "  );",
+      "}",
+    ],
+    "description": "Cria um componente de página Next.js padrão",
+  },
 }

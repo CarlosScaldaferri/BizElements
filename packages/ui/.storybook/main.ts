@@ -14,6 +14,7 @@ const config: StorybookConfig = {
   addons: [
     getAbsolutePath("@storybook/addon-docs"),
     getAbsolutePath("@storybook/addon-onboarding"),
+    getAbsolutePath("@storybook/addon-themes"),
   ],
   framework: {
     name: getAbsolutePath("@storybook/react-vite"),
@@ -30,4 +31,5 @@ const config: StorybookConfig = {
     });
   },
 };
+
 export default config;
