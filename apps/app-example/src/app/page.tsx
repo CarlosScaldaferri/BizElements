@@ -1,10 +1,13 @@
 "use client";
-import { BizForm } from "@bizelements/ui";
+import { BizForm, BizInput } from "@bizelements/ui";
+import { useForm } from "react-hook-form";
 
 export default function Home() {
+  const form = useForm();
+
   return (
-    <BizForm>
-      <input type="text" placeholder="Seu nome" />
+    <BizForm {...form}>
+      <BizInput type="text" placeholder="Seu nome" />
     </BizForm>
   );
 }
