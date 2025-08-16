@@ -1,0 +1,22 @@
+# Arquivos gerados pelo Prisma
+src/generated/
+
+# Diretórios do Node.js
+node_modules/
+
+# Diretórios de build
+.next/
+out/
+build/
+dist/
+
+# Arquivos de configuração
+.env*
+*.config.js
+
+# Arquivos de log
+*.log
+
+# Arquivos de cache
+.cache/
+.turbo/
