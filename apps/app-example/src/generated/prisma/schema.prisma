@@ -1,0 +1,31 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Example {
+  id                 String    @id @default(uuid())
+  bizAvatarUrl       String? // URL ou caminho de imagem
+  bizButtonLabel     String? // Texto do botão
+  bizCalendarDate    DateTime? // Data selecionada
+  bizCardContent     String? // Conteúdo textual do card
+  bizCheckboxChecked Boolean? // Estado do checkbox
+  bizFormData        Json? // Dados do formulário (JSON)
+  bizInputValue      String? // Valor do input
+  bizLabelText       String? // Texto do label
+  bizPopoverContent  String? // Conteúdo do popover
+  bizProgressValue   Int? // Valor do progresso
+  bizRadioGroupValue String? // Valor selecionado
+  bizSelectValue     String? // Valor selecionado
+  bizSliderValue     Int? // Valor do slider
+  bizSwitchChecked   Boolean? // Estado do switch
+  bizTextareaValue   String? // Texto do textarea
+  bizTooltipContent  String? // Conteúdo do tooltip
+  createdAt          DateTime  @default(now())
+  updatedAt          DateTime  @updatedAt
+}
