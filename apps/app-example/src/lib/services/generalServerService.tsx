@@ -1,6 +1,4 @@
 import { ExampleSchemaType } from "@/business/schemas/ExampleSchema";
-import { NextResponse } from "next/server";
-
 import prisma from "../db/prisma";
 
 export class GeneralServerService {
@@ -8,7 +6,7 @@ export class GeneralServerService {
     // Initialize any dependencies or configurations here if needed
   }
 
-  async createExample(userData: ExampleSchemaType): Promise<NextResponse> {
+  async createExample(userData: ExampleSchemaType) {
     if (!userData.simpleInput) {
       throw new Error("The field 'simpleInput' is required.");
     }
@@ -22,6 +20,6 @@ export class GeneralServerService {
     await prisma.$disconnect();
 
     // Example implementation: return a JSON response with the user data
-    return NextResponse.json({ success: true, data: newExample });
+    return { id: newExample.id, createdAt: newExample.createdAt };
   }
 }

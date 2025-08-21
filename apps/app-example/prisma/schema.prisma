@@ -10,23 +10,34 @@ datasource db {
 
 model Example {
   id                 String   @id @default(uuid())
-  bizAvatarUrl       String?  // URL ou caminho de imagem
-  bizButtonLabel     String?  // Texto do botão
-  bizCalendarDate    DateTime? // Data selecionada
-  bizCardContent     String?  // Conteúdo textual do card
-  bizCheckboxChecked Boolean? // Estado do checkbox
-  bizFormData        Json?    // Dados do formulário (JSON)
   bizInputValue      String?  // Valor do input
-  bizLabelText       String?  // Texto do label
-  bizPopoverContent  String?  // Conteúdo do popover
-  bizProgressValue   Int?     // Valor do progresso
-  bizRadioGroupValue String?  // Valor selecionado
-  bizSelectValue     String?  // Valor selecionado
-  bizSliderValue     Int?     // Valor do slider
-  bizSwitchChecked   Boolean? // Estado do switch
-  bizTextareaValue   String?  // Texto do textarea
-  bizTooltipContent  String?  // Conteúdo do tooltip
   createdAt          DateTime @default(now())
   updatedAt          DateTime @updatedAt
+}
+
+model UserRegistration {
+  id                  String   @id @default(uuid())
+  avatarUrl           String?  // URL da foto de perfil
+  firstName           String   // Nome (mínimo 2 caracteres)
+  lastName            String   // Sobrenome (mínimo 2 caracteres)
+  email               String   @unique // Email único
+  dateOfBirth         DateTime // Data de nascimento
+  gender              Gender   // Gênero: male, female, other
+  country             String   // Código ou nome do país
+  bio                 String   // Biografia (10-500 caracteres)
+  receiveNewsletter   Boolean  @default(false) // Receber newsletter
+  receivePromotions   Boolean  @default(false) // Receber promoções
+  emailNotifications  Boolean  @default(true)  // Notificações por email
+  smsNotifications    Boolean  @default(false) // Notificações por SMS
+  createdAt           DateTime @default(now())
+  updatedAt           DateTime @updatedAt
+  @@map("user_registrations")
+}
+
+// Enum para Gender
+enum Gender {
+  male
+  female  
+  other
 }
 

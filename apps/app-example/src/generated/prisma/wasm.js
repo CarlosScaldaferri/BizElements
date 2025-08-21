@@ -142,6 +142,24 @@ exports.Prisma.ExampleScalarFieldEnum = {
   updatedAt: 'updatedAt'
 };
 
+exports.Prisma.UserRegistrationScalarFieldEnum = {
+  id: 'id',
+  avatarUrl: 'avatarUrl',
+  firstName: 'firstName',
+  lastName: 'lastName',
+  email: 'email',
+  dateOfBirth: 'dateOfBirth',
+  gender: 'gender',
+  country: 'country',
+  bio: 'bio',
+  receiveNewsletter: 'receiveNewsletter',
+  receivePromotions: 'receivePromotions',
+  emailNotifications: 'emailNotifications',
+  smsNotifications: 'smsNotifications',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -167,10 +185,15 @@ exports.Prisma.NullsOrder = {
   first: 'first',
   last: 'last'
 };
-
+exports.Gender = exports.$Enums.Gender = {
+  male: 'male',
+  female: 'female',
+  other: 'other'
+};
 
 exports.Prisma.ModelName = {
-  Example: 'Example'
+  Example: 'Example',
+  UserRegistration: 'UserRegistration'
 };
 
 /**

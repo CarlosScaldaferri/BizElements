@@ -1,5 +1,5 @@
-import { ApiResponse, TApiCreated } from "../types/api";
-import axios, { AxiosError } from "axios";
+import { ApiCreated } from "../types/api";
+import axios from "axios";
 import { ExampleSchemaType } from "@/business/schemas/ExampleSchema";
 
 // Configuração do axios para esta API
@@ -10,56 +10,21 @@ const apiClient = axios.create({
   },
 });
 
-export async function registerExampleFetch(
+export async function postExample(
   data: ExampleSchemaType
-): Promise<ApiResponse<TApiCreated>> {
-  try {
-    const response = await apiClient.post<ApiResponse<TApiCreated>>(
-      "/api/example/register",
-      data
-    );
+): Promise<ApiCreated> {
+  const response = await apiClient.post<ApiCreated>(
+    "/api/example/register",
+    data
+  );
 
-    // Validação da estrutura da resposta
-    const result = response.data;
-    if (!result || typeof result.success !== "boolean") {
-      throw new Error("Resposta inválida do servidor");
-    }
-
-    return result;
-  } catch (error) {
-    // Tratamento específico para erros do Axios
-    if (axios.isAxiosError(error)) {
-      const axiosError = error as AxiosError<ApiResponse<never>>;
-
-      // Erro de timeout
-      if (error.code === "ECONNABORTED") {
-        throw new Error("Timeout na requisição. Tente novamente.");
-      }
-
-      // Erro de rede
-      if (!error.response) {
-        throw new Error("Erro de conexão. Verifique sua internet.");
-      }
-
-      // Erro do servidor com resposta estruturada
-      const serverError = axiosError.response?.data;
-      if (serverError?.error?.message) {
-        throw new Error(serverError.error.message);
-      }
-
-      // Erro HTTP genérico
-      throw new Error(
-        `Erro ${error.response.status}: ${error.response.statusText}`
-      );
-    }
-
-    // Outros erros
-    if (error instanceof Error) {
-      throw error;
-    }
-
-    throw new Error("Erro inesperado na requisição");
+  // Validação da estrutura da resposta
+  const result = response.data;
+  if (!result || typeof result.success !== "boolean") {
+    throw new Error("Resposta inválida do servidor");
   }
+
+  return result;
 }
 
 // // Função auxiliar para upload de arquivos (quando necessário)

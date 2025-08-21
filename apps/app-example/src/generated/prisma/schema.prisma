@@ -29,3 +29,48 @@ model Example {
   createdAt          DateTime  @default(now())
   updatedAt          DateTime  @updatedAt
 }
+
+model UserRegistration {
+  id String @id @default(uuid())
+
+  // Avatar
+  avatarUrl String? // URL da foto de perfil
+
+  // Basic Information
+  firstName String // Nome (mínimo 2 caracteres)
+  lastName  String // Sobrenome (mínimo 2 caracteres)
+  email     String @unique // Email único
+
+  // Date of Birth
+  dateOfBirth DateTime // Data de nascimento
+
+  // Gender (enum)
+  gender Gender // Gênero: male, female, other
+
+  // Country
+  country String // Código ou nome do país
+
+  // Bio
+  bio String // Biografia (10-500 caracteres)
+
+  // Preferences (boolean flags)
+  receiveNewsletter Boolean @default(false) // Receber newsletter
+  receivePromotions Boolean @default(false) // Receber promoções
+
+  // Notifications (boolean flags)  
+  emailNotifications Boolean @default(true) // Notificações por email
+  smsNotifications   Boolean @default(false) // Notificações por SMS
+
+  // Timestamps
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("user_registrations")
+}
+
+// Enum para Gender
+enum Gender {
+  male
+  female
+  other
+}

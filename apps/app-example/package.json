@@ -6,21 +6,32 @@
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "db:generate": "prisma generate",
+    "db:migrate": "prisma migrate dev",
+    "db:deploy": "prisma migrate deploy",
+    "db:seed": "tsx prisma/seed.ts",
+    "db:studio": "prisma studio",
+    "db:reset": "prisma migrate reset"
   },
   "dependencies": {
     "@bizelements/tools": "*",
     "@bizelements/ui": "*",
     "@prisma/client": "^6.14.0",
     "@prisma/extension-accelerate": "^2.0.2",
+    "@tanstack/react-form": "^1.19.2",
     "@tanstack/react-query": "^5.85.3",
+    "@tanstack/zod-form-adapter": "^0.42.1",
+    "axios": "^1.11.0",
     "next": "15.4.5",
     "react": "19.1.1",
-    "react-dom": "19.1.1"
+    "react-dom": "19.1.1",
+    "react-hook-form": "^7.62.0"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
     "@tailwindcss/postcss": "^4",
+    "@types/axios": "^0.9.36",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
@@ -30,5 +41,8 @@
     "tailwindcss": "^4",
     "tsx": "^4.20.4",
     "typescript": "^5"
+  },
+  "prisma": {
+    "seed": "tsx prisma/seed.ts"
   }
 }

@@ -1,7 +1,5 @@
-export interface ApiResponse<T> {
+export interface ApiError {
   success: boolean;
-  data?: T;
-  message?: string;
   error?: {
     message: string;
     code?: string;
@@ -9,7 +7,10 @@ export interface ApiResponse<T> {
   };
 }
 
-export interface TApiCreated {
-  id: number;
-  createdAt?: string;
+export interface ApiCreated {
+  success: boolean;
+  id: string;
+  createdAt?: Date;
 }
+
+

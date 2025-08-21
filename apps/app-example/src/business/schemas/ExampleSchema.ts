@@ -1,6 +1,7 @@
 import { z } from "zod";
 
 const ExampleSchema = z.object({
+  // email
   simpleInput: z
     .string()
     .min(2, "Please enter at least 2 characters")
