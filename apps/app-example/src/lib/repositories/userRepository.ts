@@ -13,6 +13,15 @@ export class UserRepository {
     return !!user;
   }
 
+  async updateUserImageUrl(id: any, url: any) {
+    const userRegistration = await prisma.userRegistration.update({
+      where: { id: id },
+      data: { avatarUrl: url },
+    });
+
+    return { id: userRegistration.id, updatedAt: userRegistration.updatedAt };
+  }
+
   async createUser(userData: UserRegistrationSchemaType) {
     // Convert dateOfBirth string to Date object
     const dateOfBirth = new Date(userData.dateOfBirth);
@@ -24,7 +33,6 @@ export class UserRepository {
     // Save to database using Prisma
     const userRegistration = await prisma.userRegistration.create({
       data: {
-        avatarUrl: userData.avatarUrl || null,
         firstName: userData.firstName,
         lastName: userData.lastName,
         email: userData.email,

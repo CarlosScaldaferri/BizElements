@@ -32,6 +32,13 @@ export class AppError extends Error {
     return new AppError(message, "VALIDATION_ERROR", 400, details);
   }
 
+  static uploadServerError(
+    message = "Error uploading file",
+    details?: unknown
+  ): AppError {
+    return new AppError(message, "UPLOAD_ERROR", 400, details);
+  }
+
   static serviceUnavailable(): AppError {
     return new AppError(
       "Service temporarily unavailable",

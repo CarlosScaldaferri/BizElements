@@ -16,33 +16,29 @@ export default function Home() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           <div className="p-6 border border-border rounded-lg space-y-4">
-            <h2 className="text-xl font-semibold">React Hook Form Example</h2>
-            <p className="text-muted-foreground text-sm">
-              Basic form implementation using React Hook Form with our
-              components.
-            </p>
-            <Link href="/example-react-hook-form">
-              <Button className="w-full">View Example</Button>
-            </Link>
-          </div>
-
-          <div className="p-6 border border-border rounded-lg space-y-4">
-            <h2 className="text-xl font-semibold">TanStack Form Example</h2>
-            <p className="text-muted-foreground text-sm">
-              Advanced form with TanStack Form library integration.
-            </p>
-            <Link href="/example-tanstack">
-              <Button className="w-full">View Example</Button>
-            </Link>
-          </div>
-
-          <div className="p-6 border border-border rounded-lg space-y-4">
-            <h2 className="text-xl font-semibold">User Registration</h2>
+            <h2 className="text-xl font-semibold">
+              User Registration without image
+            </h2>
             <p className="text-muted-foreground text-sm">
               Complete registration form showcasing Avatar, Calendar, Checkbox,
               Input, RadioGroup, Select, Switch, and Textarea components.
             </p>
             <Link href="/user-registration">
+              <Button className="w-full" variant="default">
+                View Registration
+              </Button>
+            </Link>
+          </div>
+
+          <div className="p-6 border border-border rounded-lg space-y-4">
+            <h2 className="text-xl font-semibold">
+              User Registration with image
+            </h2>
+            <p className="text-muted-foreground text-sm">
+              Complete registration form showcasing Avatar, Calendar, Checkbox,
+              Input, RadioGroup, Select, Switch, and Textarea components.
+            </p>
+            <Link href="/user-registration-image">
               <Button className="w-full" variant="default">
                 View Registration
               </Button>
