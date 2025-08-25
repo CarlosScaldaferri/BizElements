@@ -1,16 +1,12 @@
 import { ExampleSchemaType } from "@/business/schemas/ExampleSchema";
 import prisma from "../db/prisma";
 
-export class GeneralServerService {
+export class ExampleRepository {
   constructor() {
     // Initialize any dependencies or configurations here if needed
   }
 
   async createExample(userData: ExampleSchemaType) {
-    if (!userData.simpleInput) {
-      throw new Error("The field 'simpleInput' is required.");
-    }
-
     // Prisma insert na tabela Example
     const newExample = await prisma.example.create({
       data: {

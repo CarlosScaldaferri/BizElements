@@ -1,37 +1,18 @@
-import { generalServerService } from "@/lib/services";
+import { exampleServerService } from "@/lib/services";
 import { NextRequest, NextResponse } from "next/server";
 import ExampleSchema from "@/business/schemas/ExampleSchema";
-import { ApiError, ApiCreated } from "@/lib/types/api";
+import { ApiCreated } from "@/lib/types/api";
+import { validateRequest } from "@/lib/utils/validateRequest";
 
 export async function POST(request: NextRequest) {
   // Extrair dados do corpo da requisição
   const body = await request.json();
 
-  // Validar dados com o schema Zod
-  const validationResult = ExampleSchema.safeParse(body);
-
-  if (!validationResult.success) {
-    const errorMessages = validationResult.error.issues
-      .map((issue) => `${issue.path.join(".")}: ${issue.message}`)
-      .join(", ");
-
-    return NextResponse.json<ApiError>(
-      {
-        success: false,
-        error: {
-          message: `Dados inválidos: ${errorMessages}`,
-          code: "VALIDATION_ERROR",
-          details: validationResult.error.issues,
-        },
-      },
-      { status: 400 }
-    );
-  }
-
-  const validatedData = validationResult.data;
+  const { data } = validateRequest(ExampleSchema, body);
+  const validatedData = data;
 
   // Chamar o service para criar o exemplo
-  const example = await generalServerService.createExample(validatedData);
+  const example = await exampleServerService.createExample(validatedData);
 
   // Retornar no formato ApiResponse<TExample> esperado pelo frontend
   return NextResponse.json<ApiCreated>(

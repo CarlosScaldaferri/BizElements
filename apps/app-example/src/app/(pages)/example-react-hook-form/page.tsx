@@ -15,7 +15,7 @@ import {
   Input,
 } from "@bizelements/ui";
 import { useMutation } from "@tanstack/react-query";
-import { postExample } from "@/lib/api-client/exampleFetch";
+import { postExample } from "@/lib/api-client/postExample";
 import { ApiCreated } from "@/lib/types/api";
 import { zodResolver } from "@hookform/resolvers/zod";
 import ExampleSchema from "@/business/schemas/ExampleSchema";

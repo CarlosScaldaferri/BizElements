@@ -18,7 +18,7 @@ import {
   Textarea,
 } from "@bizelements/ui";
 import { useMutation } from "@tanstack/react-query";
-import { postUserRegistration } from "@/lib/api-client/userRegistrationFetch";
+import { postUserRegistration } from "@/lib/api-client/postUserRegistration";
 import { ApiCreated } from "@/lib/types/api";
 import { zodResolver } from "@hookform/resolvers/zod";
 import UserRegistrationSchema from "@/business/schemas/UserRegistrationSchema";

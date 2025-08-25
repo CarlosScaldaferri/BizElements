@@ -1,39 +1,33 @@
 import { NextRequest, NextResponse } from "next/server";
 import UserRegistrationSchema from "@/business/schemas/UserRegistrationSchema";
 import { userServerService } from "@/lib/services";
-import { ApiCreated, ApiError } from "@/lib/types/api";
+import { ApiCreated } from "@/lib/types/api";
+import { validateRequest } from "@/lib/utils/validateRequest";
+import { handleApiError } from "@/lib/utils/errorHandler";
 
 export async function POST(request: NextRequest) {
-  const body = await request.json();
+  try {
+    const body = await request.json();
 
-  // Validate the request body against our schema
-  const validationResult = UserRegistrationSchema.safeParse(body);
+    // Validar os dados de entrada
+    const { data } = validateRequest(
+      UserRegistrationSchema,
+      body
+    );    
+    const validatedData = data;
 
-  if (!validationResult.success) {
-    const errorMessages = validationResult.error.issues
-      .map((issue) => `${issue.path.join(".")}: ${issue.message}`)
-      .join(", ");
+    const userRegistration = await userServerService.createUser(validatedData);
 
-    return NextResponse.json<ApiError>(
+    // Return success response
+    return NextResponse.json<ApiCreated>(
       {
-        success: false,
-        error: {
-          message: `Dados inválidos: ${errorMessages}`,
-          code: "VALIDATION_ERROR",
-          details: validationResult.error.issues,
-        },
+        success: true,
+        id: userRegistration.id,
+        createdAt: userRegistration.createdAt,
       },
-      { status: 400 }
+      { status: 201 }
     );
+  } catch (error) {
+    return handleApiError(error);
   }
-
-  const validatedData = validationResult.data;
-  const userRegistration = await userServerService.createUser(validatedData);
-
-  // Return success response
-  return NextResponse.json<ApiCreated>({
-    success: true,
-    id: userRegistration.id,
-    createdAt: userRegistration.createdAt,
-  });
 }

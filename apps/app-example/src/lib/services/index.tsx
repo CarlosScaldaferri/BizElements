@@ -1,4 +1,4 @@
-import { GeneralServerService } from "./generalServerService";
+import { ExampleServerService } from "./exampleServerService";
 import { UserServerService } from "./userServerService";
-export const generalServerService = new GeneralServerService();
+export const exampleServerService = new ExampleServerService();
 export const userServerService = new UserServerService();

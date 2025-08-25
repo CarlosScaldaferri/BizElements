@@ -4,7 +4,7 @@ import { useForm } from "@tanstack/react-form";
 import { toast } from "sonner";
 import { Button, Input } from "@bizelements/ui";
 import { useMutation } from "@tanstack/react-query";
-import { postExample } from "@/lib/api-client/exampleFetch";
+import { postExample } from "@/lib/api-client/postExample";
 import { ApiCreated } from "@/lib/types/api";
 import ExampleSchema from "@/business/schemas/ExampleSchema";
 
