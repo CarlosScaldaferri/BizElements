@@ -10,10 +10,8 @@ export async function POST(request: NextRequest) {
     // Receber o FormData
     const formData = await request.formData();
 
-    // Extrair o arquivo
+    // Extrair os dados do FormData
     const avatar = formData.get("avatar") as File | null;
-
-    // Extrair os outros campos
     const firstName = formData.get("firstName") as string;
     const lastName = formData.get("lastName") as string;
     const email = formData.get("email") as string;
