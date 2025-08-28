@@ -1,5 +1,6 @@
 import { ZodSchema } from "zod";
 import { AppError } from "../errors/AppError";
+import { ERROR_CODES } from "../errors/errorCodes";
 
 export function validateRequest<T>(schema: ZodSchema<T>, body: unknown) {
   const validationResult = schema.safeParse(body);
@@ -11,9 +12,9 @@ export function validateRequest<T>(schema: ZodSchema<T>, body: unknown) {
 
     throw AppError.validationError(
       `Dados inválidos: ${errorMessages}`,
-      validationResult.error.issues
+      ERROR_CODES.VALIDATION_SCHEMA_ERROR
     );
   }
 
-  return { data: validationResult.data };
+  return validationResult.data;
 }

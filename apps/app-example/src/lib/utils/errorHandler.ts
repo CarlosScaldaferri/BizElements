@@ -1,5 +1,6 @@
 import { ApiError } from "../types/api";
 import { AppError } from "../errors/AppError";
+import { ERROR_CODES } from "../errors/errorCodes";
 import { NextResponse } from "next/server";
 
 export function handleApiError(error: unknown): NextResponse<ApiError> {
@@ -26,16 +27,16 @@ export function handleApiError(error: unknown): NextResponse<ApiError> {
 
     // P1001 = Can't reach database server
     if (prismaError.code === "P1001") {
-    return NextResponse.json<ApiError>(
-      {
-        success: false,
-        error: {
-        message: "Service temporarily unavailable",
-        code: "SERVICE_UNAVAILABLE",
+      return NextResponse.json<ApiError>(
+        {
+          success: false,
+          error: {
+            message: "Service temporarily unavailable",
+            code: "SERVICE_UNAVAILABLE",
+          },
         },
-      },
-      { status: 503 }
-    );
+        { status: 503 }
+      );
     }
   }
 
@@ -45,7 +46,7 @@ export function handleApiError(error: unknown): NextResponse<ApiError> {
       success: false,
       error: {
         message: "Erro interno do servidor",
-        code: "INTERNAL_SERVER_ERROR",
+        code: ERROR_CODES.INTERNAL_SERVER_ERROR,
       },
     },
     { status: 500 }

@@ -1,14 +1,16 @@
 import { NextResponse } from "next/server";
 import { AppError } from "../errors/AppError";
+import { ERROR_CODES } from "../errors/errorCodes";
 
-type UploadApiResponse = any;
-type UploadApiErrorResponse = any;
+type UploadApiResponse = Record<string, unknown>;
+type UploadApiErrorResponse = Record<string, unknown>;
 
 export class GeneralServerService {
   constructor() {
     // Initialize any dependencies or configurations here if needed
   }
 
+  // Método privado/interno para a lógica base de upload
   async uploadFile(file: File): Promise<NextResponse> {
     // return NextResponse.json({ success: true, url: "teste" }, { status: 200 });
     let cloudinary;
@@ -29,8 +31,17 @@ export class GeneralServerService {
         api_secret: process.env.CLOUDINARY_API_SECRET,
         secure: true,
       });
-    } catch (error: any) {
-      throw AppError.uploadServerError(error.message);
+    } catch (error: unknown) {
+      if (error instanceof Error) {
+        throw AppError.uploadServerError(
+          error.message,
+          ERROR_CODES.CLOUDINARY_CONFIG_ERROR
+        );
+      }
+      throw AppError.uploadServerError(
+        "Cloudinary configuration failed",
+        ERROR_CODES.CLOUDINARY_CONFIG_ERROR
+      );
     }
 
     try {
@@ -69,8 +80,17 @@ export class GeneralServerService {
         { success: true, url: uploadResult.secure_url },
         { status: 200 }
       );
-    } catch (error: any) {
-      throw AppError.uploadServerError(error.message);
+    } catch (error: unknown) {
+      if (error instanceof Error) {
+        throw AppError.uploadServerError(
+          error.message,
+          ERROR_CODES.CLOUDINARY_UPLOAD_STREAM_ERROR
+        );
+      }
+      throw AppError.uploadServerError(
+        "File upload to Cloudinary failed",
+        ERROR_CODES.CLOUDINARY_UPLOAD_STREAM_ERROR
+      );
     }
   }
 }

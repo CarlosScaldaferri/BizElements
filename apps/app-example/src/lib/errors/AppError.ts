@@ -21,22 +21,20 @@ export class AppError extends Error {
     }
   }
 
-  static emailExists(): AppError {
-    return new AppError("Email is already in use", "EMAIL_EXISTS", 409);
-  }
-
   static validationError(
     message = "Invalid data provided",
+    code = "VALIDATION_ERROR",
     details?: unknown
   ): AppError {
-    return new AppError(message, "VALIDATION_ERROR", 400, details);
+    return new AppError(message, code, 400, details);
   }
 
   static uploadServerError(
     message = "Error uploading file",
+    code = "UPLOAD_ERROR",
     details?: unknown
   ): AppError {
-    return new AppError(message, "UPLOAD_ERROR", 400, details);
+    return new AppError(message, code, 400, details);
   }
 
   static serviceUnavailable(): AppError {

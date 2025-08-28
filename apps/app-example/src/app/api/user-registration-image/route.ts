@@ -3,46 +3,22 @@ import UserRegistrationImageSchema from "@/business/schemas/UserRegistrationImag
 import { userServerService } from "@/lib/services";
 import { ApiCreated } from "@/lib/types/api";
 import { handleApiError } from "@/lib/utils/errorHandler";
-import { validateRequest } from "@/lib/utils/validateRequest";
+import { validateRequest as parseAndValidate } from "@/lib/utils/validateRequest";
+import { formDataToObject } from "@/lib/utils/utils";
 
 export async function POST(request: NextRequest) {
   try {
     // Receber o FormData
     const formData = await request.formData();
 
-    // Extrair os dados do FormData
-    const avatar = formData.get("avatar") as File | null;
-    const firstName = formData.get("firstName") as string;
-    const lastName = formData.get("lastName") as string;
-    const email = formData.get("email") as string;
-    const dateOfBirth = formData.get("dateOfBirth") as string;
-    const gender = formData.get("gender") as string;
-    const country = formData.get("country") as string;
-    const bio = formData.get("bio") as string;
-    const receiveNewsletter = formData.get("receiveNewsletter") === "true";
-    const receivePromotions = formData.get("receivePromotions") === "true";
-    const emailNotifications = formData.get("emailNotifications") === "true";
-    const smsNotifications = formData.get("smsNotifications") === "true";
-
-    // Criar objeto para validação (sem o arquivo por enquanto)
-    const userData = {
-      avatar,
-      firstName,
-      lastName,
-      email,
-      dateOfBirth,
-      gender: gender || undefined,
-      country,
-      bio,
-      receiveNewsletter,
-      receivePromotions,
-      emailNotifications,
-      smsNotifications,
-    };
+    //convertendo o formData em objeto
+    const userData = formDataToObject(formData);
 
     // Validar os dados de entrada
-    const { data } = validateRequest(UserRegistrationImageSchema, userData);
-    const validatedData = data;
+    const validatedData = parseAndValidate(
+      UserRegistrationImageSchema,
+      userData
+    );
 
     const userRegistration =
       await userServerService.createUserWithImage(validatedData);

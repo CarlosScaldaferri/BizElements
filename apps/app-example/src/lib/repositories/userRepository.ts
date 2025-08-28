@@ -13,7 +13,7 @@ export class UserRepository {
     return !!user;
   }
 
-  async updateUserImageUrl(id: any, url: any) {
+  async updateUserImageUrl(id: string, url: string) {
     const userRegistration = await prisma.userRegistration.update({
       where: { id: id },
       data: { avatarUrl: url },

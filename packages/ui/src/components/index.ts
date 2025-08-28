@@ -31,3 +31,4 @@ export { Sonner } from "./sonner/Sonner";
 export { Switch } from "./switch/Switch";
 export { Textarea } from "./textarea/Textarea";
 export { Tooltip } from "./tooltip/Tooltip";
+export { AvatarPicker } from "./avatar-picker/AvatarPicker";

@@ -120,28 +120,6 @@ exports.Prisma.TransactionIsolationLevel = makeStrictEnum({
   Serializable: 'Serializable'
 });
 
-exports.Prisma.ExampleScalarFieldEnum = {
-  id: 'id',
-  bizAvatarUrl: 'bizAvatarUrl',
-  bizButtonLabel: 'bizButtonLabel',
-  bizCalendarDate: 'bizCalendarDate',
-  bizCardContent: 'bizCardContent',
-  bizCheckboxChecked: 'bizCheckboxChecked',
-  bizFormData: 'bizFormData',
-  bizInputValue: 'bizInputValue',
-  bizLabelText: 'bizLabelText',
-  bizPopoverContent: 'bizPopoverContent',
-  bizProgressValue: 'bizProgressValue',
-  bizRadioGroupValue: 'bizRadioGroupValue',
-  bizSelectValue: 'bizSelectValue',
-  bizSliderValue: 'bizSliderValue',
-  bizSwitchChecked: 'bizSwitchChecked',
-  bizTextareaValue: 'bizTextareaValue',
-  bizTooltipContent: 'bizTooltipContent',
-  createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
-};
-
 exports.Prisma.UserRegistrationScalarFieldEnum = {
   id: 'id',
   avatarUrl: 'avatarUrl',
@@ -165,20 +143,9 @@ exports.Prisma.SortOrder = {
   desc: 'desc'
 };
 
-exports.Prisma.NullableJsonNullValueInput = {
-  DbNull: Prisma.DbNull,
-  JsonNull: Prisma.JsonNull
-};
-
 exports.Prisma.QueryMode = {
   default: 'default',
   insensitive: 'insensitive'
-};
-
-exports.Prisma.JsonNullValueFilter = {
-  DbNull: Prisma.DbNull,
-  JsonNull: Prisma.JsonNull,
-  AnyNull: Prisma.AnyNull
 };
 
 exports.Prisma.NullsOrder = {
@@ -192,7 +159,6 @@ exports.Gender = exports.$Enums.Gender = {
 };
 
 exports.Prisma.ModelName = {
-  Example: 'Example',
   UserRegistration: 'UserRegistration'
 };
 

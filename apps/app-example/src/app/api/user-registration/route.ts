@@ -10,10 +10,7 @@ export async function POST(request: NextRequest) {
     const body = await request.json();
 
     // Validar os dados de entrada
-    const { data } = validateRequest(
-      UserRegistrationSchema,
-      body
-    );    
+    const data = validateRequest(UserRegistrationSchema, body);
     const validatedData = data;
 
     const userRegistration = await userServerService.createUser(validatedData);

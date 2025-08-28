@@ -24,8 +24,8 @@ import {
   RadioGroupItem,
   Switch,
   Textarea,
+  AvatarPicker,
 } from "@bizelements/ui";
-import { Upload, Trash2 } from "lucide-react";
 import { useMutation } from "@tanstack/react-query";
 import { postUserRegistrationImage } from "@/lib/api-client/postUserRegistrationImage";
 import { ApiCreated } from "@/lib/types/api";
@@ -150,84 +150,16 @@ export default function UserRegistrationImagePage() {
                   <FormItem>
                     <FormLabel>Picture</FormLabel>
                     <FormControl className="flex flex-col items-start">
-                      <div className="space-y-4 w-fit flex flex-col items-center justify-center">
-                        {/* Preview da imagem */}
-                        <div className="w-32 h-32 bg-muted rounded-full overflow-hidden flex justify-center items-center">
-                          {previewUrl ? (
-                            <img
-                              src={previewUrl}
-                              className="w-32 h-32 rounded-full flex justify-center items-center"
-                              alt="Profile preview"
-                            />
-                          ) : (
-                            <div>
-                              No image
-                              <br />
-                              selected
-                            </div>
-                          )}
-                        </div>
-
-                        <div className="flex w-full items-center justify-center space-x-2">
-                          {/* Input de arquivo */}
-                          <div>
-                            <Input
-                              type="file"
-                              accept="image/*"
-                              disabled={mutation.isPending}
-                              onChange={(e) => {
-                                const file = e.target.files?.[0];
-                                onChange(file);
-                                handleImageChange(file);
-                              }}
-                              className="hidden"
-                              id="avatar-upload"
-                              {...field}
-                              ref={(e) => {
-                                field.ref(e);
-                                fileInputRef.current = e;
-                              }}
-                            />
-
-                            <Button
-                              type="button"
-                              variant="outline"
-                              onClick={() => {
-                                document
-                                  .getElementById("avatar-upload")
-                                  ?.click();
-                              }}
-                              disabled={mutation.isPending}
-                              className="w-full flex items-center justify-center"
-                              aria-label={
-                                value ? "Alterar Imagem" : "Selecionar Imagem"
-                              }
-                            >
-                              <Upload className="w-5 h-5" />
-                            </Button>
-                          </div>
-                          {/* Botão para limpar */}
-                          {previewUrl && (
-                            <Button
-                              type="button"
-                              variant="outline"
-                              size="sm"
-                              onClick={() => {
-                                onChange(undefined);
-                                handleImageChange(undefined);
-                                // Limpar o input file
-                                const fileInput = document.querySelector(
-                                  'input[type="file"]'
-                                ) as HTMLInputElement;
-                                if (fileInput) fileInput.value = "";
-                              }}
-                              aria-label="Remover Imagem"
-                            >
-                              <Trash2 className="w-5 h-5 text-destructive" />
-                            </Button>
-                          )}
-                        </div>
-                      </div>
+                      <AvatarPicker
+                        id="avatar-upload"
+                        file={value as File | undefined}
+                        previewUrl={previewUrl}
+                        onChange={(f) => {
+                          onChange(f);
+                          handleImageChange(f ?? undefined);
+                        }}
+                        disabled={mutation.isPending}
+                      />
                     </FormControl>
 
                     <FormMessage />
