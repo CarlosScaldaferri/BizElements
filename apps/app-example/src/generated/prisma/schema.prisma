@@ -1,0 +1,36 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model UserRegistration {
+  id                 String   @id @default(uuid())
+  avatarUrl          String? // URL da foto de perfil
+  firstName          String // Nome (mínimo 2 caracteres)
+  lastName           String // Sobrenome (mínimo 2 caracteres)
+  email              String   @unique // Email único
+  dateOfBirth        DateTime // Data de nascimento
+  gender             Gender // Gênero: male, female, other
+  country            String // Código ou nome do país
+  bio                String // Biografia (10-500 caracteres)
+  receiveNewsletter  Boolean  @default(false) // Receber newsletter
+  receivePromotions  Boolean  @default(false) // Receber promoções
+  emailNotifications Boolean  @default(true) // Notificações por email
+  smsNotifications   Boolean  @default(false) // Notificações por SMS
+  createdAt          DateTime @default(now())
+  updatedAt          DateTime @updatedAt
+
+  @@map("user_registrations")
+}
+
+// Enum para Gender
+enum Gender {
+  male
+  female
+  other
+}
